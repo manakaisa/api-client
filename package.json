@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --timeout 30000"
   },
   "devDependencies": {
     "eslint": "^5.2.0",

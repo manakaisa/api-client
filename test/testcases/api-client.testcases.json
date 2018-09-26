@@ -1,0 +1,252 @@
+[
+  {
+    "description": "prepare",
+    "testcases": [
+      {
+        "test": "get URL",
+        "command": "getWebServerURL",
+        "expectedData": { "assert": "ok" },
+        "exportData": "url"
+      },
+      {
+        "test": "create GET",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "GET",
+          "path": "/get",
+          "verifyRequestHeaders": { "foo": "req.head.bar" },
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "create POST",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "POST",
+          "path": "/post",
+          "verifyRequestHeaders": { "foo": "req.head.bar" },
+          "verifyRequestData": { "foo": "req.body.bar" },
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "create PUT",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "PUT",
+          "path": "/put",
+          "verifyRequestHeaders": { "foo": "req.head.bar" },
+          "verifyRequestData": { "foo": "req.body.bar" },
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "create PATCH",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "PATCH",
+          "path": "/patch",
+          "verifyRequestHeaders": { "foo": "req.head.bar" },
+          "verifyRequestData": { "foo": "req.body.bar" },
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "create DELETE",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "DELETE",
+          "path": "/delete",
+          "verifyRequestHeaders": { "foo": "req.head.bar" },
+          "verifyRequestData": { "foo": "req.body.bar" },
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "create /cache",
+        "command": "prepareWebAPI",
+        "inputData": {
+          "method": "GET",
+          "path": "/cache",
+          "responseHeaders": { "foo": "res.head.bar" },
+          "responseData": { "foo": "res.body.bar" }
+        },
+        "expectedData": { "assert": "ok" }
+      }
+    ]
+  },
+  {
+    "description": "API-Client",
+    "testcases": [
+      {
+        "test": "constructor",
+        "command": "constructor",
+        "inputData": {
+          "url": "$url",
+          "options": {
+            "headers": { "foo": "req.head.bar" }
+          }
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "get",
+        "command": "get",
+        "inputData": {
+          "path": "/get"
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "post",
+        "command": "post",
+        "inputData": {
+          "path": "/post",
+          "data": { "foo": "req.body.bar" }
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "put",
+        "command": "put",
+        "inputData": {
+          "path": "/put",
+          "data": { "foo": "req.body.bar" }
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "patch",
+        "command": "patch",
+        "inputData": {
+          "path": "/patch",
+          "data": { "foo": "req.body.bar" }
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "delete",
+        "command": "delete",
+        "inputData": {
+          "path": "/delete",
+          "data": { "foo": "req.body.bar" }
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "API-Client (cacheMode: 'force-cache-if-revalidate')",
+    "testcases": [
+      {
+        "test": "prepare cache for /cache (response will be stored in cache but not be marked revalidated status)",
+        "command": "get",
+        "inputData": {
+          "path": "/cache",
+          "cacheMode": "force-cache"
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "set browser offline",
+        "command": "setBrowserOffline",
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "#1 GET /cache (service try to fetch data from server even there is response in cache, but fail because server is offline)",
+        "command": "get",
+        "inputData": {
+          "path": "/cache",
+          "cacheMode": "force-cache-if-revalidated"
+        },
+        "expectedData": { "assert": "error" }
+      },
+      {
+        "test": "set browser online",
+        "command": "setBrowserOnline",
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "#2 GET /cache (service try to fetch data from server even there is response in cache, response will be marked revalidated status)",
+        "command": "get",
+        "inputData": {
+          "path": "/cache",
+          "cacheMode": "force-cache-if-revalidated"
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      },
+      {
+        "test": "set browser offline",
+        "command": "setBrowserOffline",
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "#3 GET /cache (service try to fetch data from cache)",
+        "command": "get",
+        "inputData": {
+          "path": "/cache",
+          "cacheMode": "force-cache-if-revalidated"
+        },
+        "expectedData": [
+          { "assert": "equal", "key": "$outputData.headers['foo']", "value": "res.head.bar" },
+          { "assert": "equal", "key": "ok", "value": true },
+          { "assert": "equal", "key": "status", "value": 200 },
+          { "assert": "equal", "key": "statusText", "value": "OK" },
+          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+        ]
+      }
+    ]
+  }
+]

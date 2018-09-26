@@ -6,3 +6,8 @@ node_modules/
 
 # Build directories
 build/
+
+# Test
+test/tester.js
+test/plug-ins/tester-plugin-webserver.js
+test/plug-ins/tester-plugin-browser.js
