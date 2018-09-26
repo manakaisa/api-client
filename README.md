@@ -10,11 +10,11 @@ A API client
     headers: {}
   }
   ```
-- get(path[, cacheMode]) => promise<response>
-- post(path, data) => promise<response>
-- put(path, data) => promise<response>s
-- patch(path, data) => promise<response>
-- delete(path) => promise<response>
+- get(path[, cacheMode]) => promise<response\>
+- post(path, data) => promise<response\>
+- put(path, data) => promise<response\>
+- patch(path, data) => promise<response\>
+- delete(path) => promise<response\>
   ```
   response:
   {
