@@ -110,7 +110,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -125,7 +125,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -140,7 +140,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -155,7 +155,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -170,7 +170,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       }
     ]
@@ -190,7 +190,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -224,7 +224,7 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
       },
       {
@@ -244,8 +244,30 @@
           { "assert": "equal", "key": "ok", "value": true },
           { "assert": "equal", "key": "status", "value": 200 },
           { "assert": "equal", "key": "statusText", "value": "OK" },
-          { "assert": "equal", "key": "data", "value": { "foo": "res.body.bar" } }
+          { "assert": "equal", "key": "body", "value": { "foo": "res.body.bar" } }
         ]
+      }
+    ]
+  },
+  {
+    "description": "API-Client (headers)",
+    "testcases": [
+      {
+        "test": "set header",
+        "command": "setHeader",
+        "inputData": {
+          "key": "Authorization",
+          "value": "Bearer xxxxxxxx"
+        },
+        "expectedData": { "assert": "ok" }
+      },
+      {
+        "test": "get header",
+        "command": "getHeader",
+        "inputData": {
+          "key": "Authorization"
+        },
+        "expectedData": { "assert": "equal", "value": "Bearer xxxxxxxx" }
       }
     ]
   }

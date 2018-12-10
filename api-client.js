@@ -1,9 +1,9 @@
-function transformHeaders (mapHeaders) {
-  let headers = {};
-  for (let key of mapHeaders.keys()) {
-    headers[key] = mapHeaders.get(key);
+function transformHeaders (headers) {
+  let oHeaders = {};
+  for (let key of headers.keys()) {
+    oHeaders[key] = headers.get(key);
   }
-  return headers;
+  return oHeaders;
 }
 
 async function transformResponsePromise (res) {
@@ -12,7 +12,7 @@ async function transformResponsePromise (res) {
     ok: res.ok,
     status: res.status,
     statusText: res.statusText,
-    data: await res.json()
+    body: await res.json()
   };
 }
 
@@ -21,19 +21,22 @@ export default class API {
     this._url = url;
     this._options = {};
 
-    this._options.headers = options.headers || {};
-    this._options.headers['Content-Type'] = 'application/json';
-    this._options.mode = 'same-origin';
-    if (options.cors === true) {
-      this._options.mode = 'cors';
-    }
+    this._options.headers = new Headers(options.headers);
+    this._options.headers.append('Content-Type', 'application/json');
+    
+    this._options.mode = options.mode;
 
-    this._mapRevalidatedURLs = new Map();
+    this._setRevalidatedURLs = new Set();
+  }
+  
+  get headers () {
+    return this._options.headers;
   }
 
-  async get (path, cacheMode) {
+  async get (path, cache) {
+    let cacheMode = cache;
     if (cacheMode === 'force-cache-if-revalidated') {
-      if (this._mapRevalidatedURLs.get(path) === true) {
+      if (this._setRevalidatedURLs.has(path)) {
         cacheMode = 'force-cache';
       } else {
         cacheMode = 'default';
@@ -48,7 +51,7 @@ export default class API {
 
     if (result.ok === true) {
       if (cacheMode == null || cacheMode === 'default' || cacheMode === 'reload' || cacheMode === 'no-cache') {
-        this._mapRevalidatedURLs.set(path, true);
+        this._setRevalidatedURLs.add(path);
       }
     }
 

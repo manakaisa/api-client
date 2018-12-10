@@ -6,14 +6,14 @@ A API client
   ```
   options:
   {
-    cors: false,
+    mode: "value of same-origin|no-cors|cors",
     headers: {}
   }
   ```
 - Headers => <Headers\>
-- get(path[, cacheMode]) => <Ppromise<response\>>
+- get(path[, cache]) => <Promise<response\>>
   ```
-  cacheMode: "value of default|no-store|reload|no-cache|force-cache|only-if-cached|force-cache-if-revalidate"
+  cache: "value of default|no-store|reload|no-cache|force-cache|only-if-cached|force-cache-if-revalidate"
   ```
 - post(path, data) => <Promise<response\>>
 - put(path, data) => <Promise<response\>>
@@ -29,4 +29,3 @@ A API client
     body: {}
   }
   ```
-  

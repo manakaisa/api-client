@@ -158,6 +158,22 @@ var commmands = [
         return window.api.delete(path, data);
       }, inputData.path, inputData.data);
     }
+  },
+  {
+    name: 'setHeader',
+    command: async (inputData) => {
+      return browser.evaluate((key, value) => {
+        window.api.headers.append(key, value);
+      }, inputData.key, inputData.value);
+    }
+  },
+  {
+    name: 'getHeader',
+    command: async (inputData) => {
+      return browser.evaluate((key) => {
+        return window.api.headers.get(key);
+      }, inputData.key);
+    }
   }
 ];
 
