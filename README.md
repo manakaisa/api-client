@@ -10,7 +10,7 @@ A API client
     headers: {}
   }
   ```
-- Headers => <Headers>
+- Headers => <Headers\>
 - get(path[, cacheMode]) => <Ppromise<response\>>
   ```
   cacheMode: "value of default|no-store|reload|no-cache|force-cache|only-if-cached|force-cache-if-revalidate"
