@@ -10,11 +10,15 @@ A API client
     headers: {}
   }
   ```
-- get(path[, cacheMode]) => promise<response\>
-- post(path, data) => promise<response\>
-- put(path, data) => promise<response\>
-- patch(path, data) => promise<response\>
-- delete(path) => promise<response\>
+- Headers => <Headers>
+- get(path[, cacheMode]) => <Ppromise<response\>>
+  ```
+  cacheMode: "value of default|no-store|reload|no-cache|force-cache|only-if-cached|force-cache-if-revalidate"
+  ```
+- post(path, data) => <Promise<response\>>
+- put(path, data) => <Promise<response\>>
+- patch(path, data) => <Promise<response\>>
+- delete(path) => <Promise<response\>>
   ```
   response:
   {
@@ -22,16 +26,7 @@ A API client
     ok: <boolean>,
     status: <number>,
     statusText: 'HTTP Status Text',
-    data: {}
+    body: {}
   }
   ```
-
-## cacheMode: "force-cache-if-revalidate"
-- check if response in cache is revalidated since API-Client initiates
-- if response is revalidated, cacheMode will be "force-cache"
-- if response is not revalidated, cacheMode will be "default" and response will be marked as revalidated
-
-## Step Test
-- copy tester.js to test/
-- copy tester-plugin-webserver.js to test/plug-ins/
-- copy tester-plugin-browser.js to test/plug-ins/
+  
